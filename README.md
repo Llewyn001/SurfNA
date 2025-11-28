@@ -1,12 +1,10 @@
 # SurfNA 🧬
 
-> Minimal executable code for nucleic acid-protein docking based on SurfDock
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.2.2-orange.svg)](https://pytorch.org/)
 
-**SurfNA** is a lightweight codebase extracted from the [SurfDock](https://github.com/SurfDock/SurfDock) project, specifically designed for **nucleic acid-receptor docking**. This project provides a complete docking evaluation pipeline including nucleic acid conformation sampling, scoring, and RMSD analysis.
 
 ## ✨ Features
 
@@ -47,7 +45,7 @@
 2. **Create conda environment**
    ```bash
    conda env create -f environment.yml
-   conda activate SurfDock
+   conda activate SurfNA
    ```
 
 3. **Set environment variables**
@@ -162,7 +160,7 @@ For detailed documentation, see:
 
 ```bash
 # Activate environment
-conda activate SurfDock
+conda activate SurfNA
 
 # Set environment variables
 export precomputed_arrays="/root/autodl-tmp/SurfNA/precomputed_arrays"
@@ -279,18 +277,7 @@ Test data is located in `data/testset/` and `test_na_surface/input/`.
 - **[comp_surface/SURFACE_COMPUTATION.md](comp_surface/SURFACE_COMPUTATION.md)** - Detailed computation method
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contribution guidelines
 
-## 🔬 Citation
 
-If you use SurfNA in your research, please cite the original SurfDock project:
-
-```bibtex
-@article{surfdock,
-  title={SurfDock: A Fast Diffusion Model for Protein-Ligand Docking},
-  author={...},
-  journal={...},
-  year={...}
-}
-```
 
 ## 🤝 Contributing
 
@@ -309,30 +296,11 @@ Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for de
    - Docking pose structures (`.sdf` files)
    - Performance metrics
 
-## 🐛 Troubleshooting
-
-### Issue: pymesh Import Error
-If you encounter pymesh-related errors, ensure you're using the correct conda environment:
-```bash
-conda activate SurfDock
-```
-
-### Issue: APBS Tools Not Found
-Check that the tools are in the correct location:
-```bash
-ls comp_surface/tools/transfer/APBS-3.4.1.Linux/bin/apbs
-```
-
-### Issue: Model Weights Missing
-Ensure model weights are in `model_weights/score_model/` and `model_weights/confidence_model/`.
 
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-This project is based on the [SurfDock](https://github.com/SurfDock/SurfDock) project, specifically adapted for nucleic acid docking scenarios.
 
 ## 📧 Contact
 
