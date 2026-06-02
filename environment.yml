@@ -1,55 +1,33 @@
-name: SurfDock
+name: surfna-infer
 channels:
-  - mx
-  - pyg
   - pytorch
-  - nvidia
-  - defaults
+  - pyg
   - conda-forge
+  - defaults
 dependencies:
-  - python=3.10.0
-  - pytorch=2.2.2
-  - pytorch-cuda=12.1
-  - pyg=2.5.2
-  - cudatoolkit=11.8.0
-  - biopandas=0.4.1
-  - rdkit=2023.3.1
-  - ambertools=22.5
-  - openbabel=3.1.1
-  - mdtraj=1.9.9
-  - loguru=0.7.2
-  - tqdm
-  - pyyaml
-  - prefetch-generator
-  - biopython
-  - wandb
-  - numpy=1.24.4
+  - python=3.10
+  - pip
+  - numpy
   - scipy
-  - scikit-learn
   - pandas
-  - matplotlib
+  - pyyaml
+  - tqdm
+  - scikit-learn
+  - biopython
+  - rdkit
+  - mdanalysis
+  - biopandas
+  - loguru
+  - joblib
   - networkx
-  - ipython
-  - jupyter
-  - accelerate
-  - transformers
-  - fair-esm
-  - e3nn
-  - torch-geometric
-  - dimorphite-dl
-  - spyrmsd
-  - MDAnalysis
-  - posebusters
-  - prefetch-generator
+  - pytorch
+  - pytorch-cuda=11.8
+  - pyg
   - pip:
-    - accelerate==0.15.0
-    - wandb==0.16.1
-    - biopython==1.79
-    - e3nn==0.5.1
-    - prefetch-generator==1.0.3
-    - rdkit==2023.3.1
-    - spyrmsd==0.7.0
-    - mdanalysis==2.4.0
-    - posebusters==0.2.13
-    - fair-esm==2.0.1
-    - transformers==4.29.2
+      - accelerate
+      - e3nn
+      - fair-esm
+      - meeko
+      - plyfile
+      - prefetch-generator
+      - wandb
