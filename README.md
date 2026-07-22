@@ -1,7 +1,8 @@
 # SurfNA Inference Release
 
 SurfNA is a surface-aware docking method for nucleic-acid ligand recognition.
-This repository is the lightweight release layout for:
+This repository provides the inference code and the exact generator and MDN
+checkpoints used by the current manuscript for:
 
 1. receptor surface generation;
 2. pose generation and MDN reranking;
@@ -19,9 +20,21 @@ src/score_in_place_dataset/
                          Inference-only virtual screening dataset
 scripts/                 Release entry points
 examples/                Minimal CSV examples
-checkpoints/             Place generator and MDN scorer checkpoints here
+checkpoints/             Released generator and MDN scorer checkpoints
+data/audit/              Dataset manifests, provenance, and leakage audit
 tools/                   Optional APBS/MSMS/PDB2PQR binaries
 ```
+
+Clone and verify the release files with:
+
+```bash
+git clone https://github.com/Llewyn001/SurfNA.git
+cd SurfNA
+sha256sum --check CHECKSUMS.sha256
+```
+
+On macOS, replace the last command with
+`shasum -a 256 -c CHECKSUMS.sha256`.
 
 ## Environment
 
@@ -142,5 +155,38 @@ The fixed SurfNA method used in the current manuscript is:
 expanded high-confidence generator + official-like MDN scorer + 40 poses
 ```
 
-This release keeps only the components needed to reproduce inference and
-screening once trained checkpoints are supplied.
+The two trained checkpoints are included under `checkpoints/`; no separate
+download is required. Their SHA-256 identities and exact training-run
+provenance are recorded in `CHECKSUMS.sha256` and
+`data/audit/model_provenance.csv`.
+
+## Dataset and Leakage Audit
+
+The public audit under [`data/audit`](data/audit/README.md) distinguishes the
+data used by each released component:
+
+- protein-surface pretraining: 12,596 nominal training entries, 10,294 graphs
+  actually loaded;
+- released nucleic-acid generator: 2,904 training graphs actually loaded;
+- released MDN scorer: a separate v5 split with 1,240 training graphs over 868
+  unique PDB receptors;
+- fixed generator development set: 132 nominal entries, 128 graphs actually
+  loaded;
+- Jiang final evaluation: 220 component-set rows over 132 unique receptors.
+
+Exact complex-ID and PDB-accession overlap between either released training
+split and evaluation receptors is zero. However, the generator checkpoint was
+selected on a fixed development set containing the same 132 PDB receptor
+accessions as the Jiang benchmark union (128 graphs were loadable in that run),
+which is explicitly marked as model-selection leakage and requires an
+independent-validation rerun for a strict external benchmark. The sequence audit also finds
+22 exact canonical receptor-sequence signatures shared with the generator
+split and 18 shared with the MDN split, so both are marked `REVIEW`; details
+are disclosed in `data/audit/exact_sequence_overlap_details.csv` and
+`data/audit/mdn_exact_sequence_overlap_details.csv`. This is an exact-sequence
+check, not a homology- or structure-similarity audit.
+
+The repository intentionally excludes training scripts, coordinate datasets,
+raw benchmark outputs, and cluster-specific logs. The supplied artifacts cover
+inference, virtual screening, public checkpoint verification, and dataset
+provenance review.

@@ -3,8 +3,12 @@ __pycache__/
 *.so
 .DS_Store
 .ipynb_checkpoints/
+*.inspect.ndjson
 
-data/
+data/*
+!data/audit/
+!data/audit/**
+data/audit/*.inspect.ndjson
 runs/
 logs/
 outputs/

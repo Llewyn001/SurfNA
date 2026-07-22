@@ -1,0 +1,14 @@
+stage,role,component,complex_instances,unique_pdb_receptors,rna,dna,rna_dna,unknown_type,source,note
+protein_surface_pretraining,train,PDBbind_v2020_surface_filtered,10294,10294,0,0,0,0,PDBbind v2020,12596 nominal split entries; 10294 graphs actually loaded by the released model's ancestor run.
+protein_surface_pretraining,validation,PDBbind_v2020_surface_filtered,569,569,0,0,0,0,PDBbind v2020,698 nominal split entries; 569 graphs actually loaded.
+nucleic_acid_transfer,trainval,original_v6,882,882,377,485,20,0,Jiang-curated starting collection after quality/leakage filters,One ligand instance retained per PDB receptor.
+nucleic_acid_transfer,trainval,expanded_highconf,2022,2022,1229,707,86,0,Independent RCSB PDB retrieval,"Passed extraction, RDKit, direct-contact, surface, and cache-graph checks."
+nucleic_acid_transfer,trainval,combined,2904,2904,1606,1192,106,0,original_v6 + expanded_highconf,Frozen transfer-learning split used by the released generator.
+model_selection,development,fixed_132_receptors,132,132,115,14,3,0,Jiang benchmark receptor set,"132 nominal entries; 128 graphs actually loaded by the released generator run; used for checkpoint selection, not fitting."
+mdn_scorer_transfer,train,na_clean_v5,1240,868,0,0,0,1240,SurfNA v5 frozen split/cache,1240 nominal entries and 1240 cached graphs actually loaded; distinct from the 2904-complex generator split.
+mdn_scorer_transfer,validation,na_clean_v5,24,14,0,0,0,24,SurfNA v5 frozen split/cache,24 nominal entries and 24 cached graphs actually loaded.
+final_evaluation,test,yan,73,73,58,14,1,0,Jiang benchmark,Mapped usable 73 of 77; excluded 4 unavailable/unusable entries.
+final_evaluation,test,philips,38,38,38,0,0,0,Jiang benchmark,Mapped usable 38 of 40; excluded 2 unavailable/unusable entries.
+final_evaluation,test,chen,55,55,53,0,2,0,Jiang benchmark,Mapped usable 55 of 56; excluded 1 unavailable/unusable entries.
+final_evaluation,test,ruiz,54,54,54,0,0,0,Jiang benchmark,Mapped usable 54 of 55; excluded 1 unavailable/unusable entries.
+final_evaluation,test,jiang_union,220,132,203,14,3,0,Jiang benchmarks,220 component-set rows over 132 unique PDB receptors; component sets overlap.

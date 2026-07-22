@@ -1,0 +1,34 @@
+name: release-smoke
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Validate Python and checkpoint metadata
+        run: |
+          python -m pip install pyyaml
+          python -m py_compile scripts/*.py surface/*.py src/inference_accelerate.py
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+
+          for path in Path("checkpoints").glob("*/model_parameters.yml"):
+              payload = yaml.safe_load(path.read_text())
+              assert isinstance(payload, dict) and payload.get("model_type")
+          PY
+      - name: Verify released weights
+        run: sha256sum --check CHECKSUMS.sha256
+      - name: Reject private cluster paths
+        run: |
+          if grep -R -n -E '/public/home/|4090_[0-9]' README.md tools checkpoints scripts data/audit; then
+            echo "Private cluster path found in public release"
+            exit 1
+          fi
