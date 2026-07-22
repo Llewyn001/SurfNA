@@ -1,0 +1,2 @@
+489ba24a32135cdc2cf0d1e4ea7eadf07c33d4b135d5fdd0270e283eeb25de91  checkpoints/generator/best_inference_epoch_model.pt
+a1ad6f136cafb3da20c89524474419159b63aa077f4404a102fe866c32023fd5  checkpoints/mdn_scorer/best_model.pt
