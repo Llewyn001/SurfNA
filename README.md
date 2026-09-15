@@ -90,6 +90,6 @@ The earlier MDN-ranking implementation remains in [the V1 commit](https://github
 
 ## License and attribution
 
-The V2 license selection is pending; see [LICENSE_PENDING.md](LICENSE_PENDING.md). This branch is a publication draft until that field is finalized.
+The project-specific code and checkpoint license has not yet been specified; see [LICENSE_PENDING.md](LICENSE_PENDING.md). Existing third-party notices remain applicable.
 
 See [CITATION.md](CITATION.md) for the manuscript and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for inherited SurfDock/DiffDock code and separately installed software. PDB and PDBbind resources remain subject to their providers' terms.
