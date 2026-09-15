@@ -1,0 +1,73 @@
+{
+  "version": "2.0.0-rc1",
+  "assets": [
+    {
+      "id": "default",
+      "file": "surfna-v2-default-checkpoints.tar.gz",
+      "bytes": 106795629,
+      "sha256": "28535007ec909618bbb1764582c6dbb71654f4f5a0c5930e61da67fb1741aa25",
+      "url": "https://github.com/Llewyn001/SurfNA/releases/download/v2.0.0-rc1/surfna-v2-default-checkpoints.tar.gz",
+      "files": [
+        {
+          "path": "checkpoints/generator_seed0/model.pt",
+          "bytes": 76385090,
+          "sha256": "0e516b28d8304b14969c12d6ec997b5ac50baa41869400ecaa72fcc748fbfd6c"
+        },
+        {
+          "path": "checkpoints/mdn/best_head.pt",
+          "bytes": 430060,
+          "sha256": "6ca5c4dd9b2903b5df42b20f531cdb1babbf1871753fbde05132d0fd146a39b8"
+        },
+        {
+          "path": "checkpoints/mdn/native_prior_static_bundle.pt",
+          "bytes": 38127768,
+          "sha256": "a01385ac6bdadfa5376361c97be786040ee49e6036dc65e9a938e399e518febc"
+        },
+        {
+          "path": "checkpoints/mdn/native_train_reference.json",
+          "bytes": 8279,
+          "sha256": "744b8de24257c1630a20566933d6138a2235edbc0c38ccaad78968e49990d051"
+        },
+        {
+          "path": "checkpoints/mdn/training_summary.json",
+          "bytes": 145,
+          "sha256": "e6bf87c3c967b7a862b6ca8f0a89585431a6aa072d8610e74a1e74d168418a1d"
+        },
+        {
+          "path": "checkpoints/scorer/model.pt",
+          "bytes": 261964,
+          "sha256": "12f144175afab658b0c7d33031be84f3f2082134f0fa69f7fe4c2ae310f859df"
+        },
+        {
+          "path": "checkpoints/scorer/provenance.json",
+          "bytes": 597,
+          "sha256": "273fcabece74cd2260a36baa95554fbfd29764cf4ae79c73f5965295df8fb230"
+        },
+        {
+          "path": "checkpoints/scorer/rank_scaler.json",
+          "bytes": 70316,
+          "sha256": "3971a2f344fd128e10c1843c12091daabe71b4016ecd900b80377bd7d5afab13"
+        }
+      ]
+    },
+    {
+      "id": "benchmark-repeats",
+      "file": "surfna-v2-benchmark-repeats-checkpoints.tar.gz",
+      "bytes": 141611710,
+      "sha256": "e4cd3e39847abf027853d61123ba49287ba39129cb7a70eaed494c75d782d928",
+      "url": "https://github.com/Llewyn001/SurfNA/releases/download/v2.0.0-rc1/surfna-v2-benchmark-repeats-checkpoints.tar.gz",
+      "files": [
+        {
+          "path": "reproducibility/checkpoints/figure2/seed1/model.pt",
+          "bytes": 76385090,
+          "sha256": "0110655f0bc977d65736209220a3e42a93c5557603a2c5b04700ff5b0097880f"
+        },
+        {
+          "path": "reproducibility/checkpoints/figure2/seed2/model.pt",
+          "bytes": 76385090,
+          "sha256": "c6a4392e6e2a68072437748d9e12a3f294ee4a293b2224566be4326ef7908c2a"
+        }
+      ]
+    }
+  ]
+}

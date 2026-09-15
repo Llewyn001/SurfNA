@@ -1,0 +1,126 @@
+{
+  "algorithm": "deterministic component-level nested mixed-integer L1 matching of frozen train-set categorical strata with exact target counts; performance blind",
+  "gates": {
+    "10_in_25": true,
+    "25_in_50": true,
+    "50_in_100": true,
+    "all_component_groups_intact": true,
+    "full_train_exact": true,
+    "no_test_overlap": true,
+    "no_validation_overlap": true
+  },
+  "graph_cache_canonicalization": {
+    "canonical_sha256": {
+      "10": "517a72ee195dbd8858c9796c2b353757e6cf123828ca868a45ccc5ddc04d1d4e",
+      "25": "c3254bfe5e43a6c6c1467e40475bdfc2810a3ae7886de918b204213c710bc100",
+      "50": "896b5c4255102bf0b924bcc794a68a5440682a2bfb99181db64ef8a169696e01"
+    },
+    "policy": "Use one byte-identical reduced-data heterograph cache on both sites; preserve independently serialized copies where applicable.",
+    "source_site": "4090_2"
+  },
+  "schema_version": "surfna-data-efficiency-nested-subsets-v1",
+  "selection_seed": 20260906,
+  "subsets": {
+    "10": {
+      "actual_complexes": 80,
+      "actual_fraction": 0.09987515605493133,
+      "cache_dir": null,
+      "cache_files": {
+        "heterographs.pkl": {
+          "bytes": 13194255,
+          "sha256": "517a72ee195dbd8858c9796c2b353757e6cf123828ca868a45ccc5ddc04d1d4e"
+        },
+        "rdkit_ligands.pkl": {
+          "bytes": 66726,
+          "sha256": "ebfbf75b031fc19120010108a3e3e4b9abc9c10d6842c9ce5d32e689a814e85d"
+        }
+      },
+      "component_groups": 29,
+      "manifest_csv": null,
+      "manifest_csv_sha256": "3d553a649c0e90908d19535ff9414bfe5b900ec56ddf891ed0fc5b1049b93760",
+      "nominal_fraction": 0.1,
+      "split_txt": null,
+      "split_txt_sha256": "07478a60072a1d8927ceca508b54f97ab347cd6acc47c6aef576e599e80f1ef3",
+      "target_complexes": 80,
+      "weights_tsv": null,
+      "weights_tsv_sha256": "1b9ba6c246ff50c88da9196841e1c3990ef2f106797e99c8228096f9f6573d9b"
+    },
+    "100": {
+      "actual_complexes": 801,
+      "actual_fraction": 1.0,
+      "cache_dir": null,
+      "cache_files": {
+        "heterographs.pkl": {
+          "bytes": 124949981,
+          "sha256": "b0259ca793f8a200d9eb06ec5edb833043ecc7ec4bdfb1dba5edebb0568b93b8"
+        },
+        "rdkit_ligands.pkl": {
+          "bytes": 654745,
+          "sha256": "4a17e35c203ee90a897163b2b9fb18023bc8c3f4d0fe62a6cf2b3bd3a1a4bb01"
+        }
+      },
+      "component_groups": 292,
+      "manifest_csv": null,
+      "manifest_csv_sha256": "1f8592f0a837c6113a30230b7e67dc3541654bb9e851a8f7a06917223a123471",
+      "nominal_fraction": 1.0,
+      "split_txt": null,
+      "split_txt_sha256": "fbf47922f7bb99e19c795e7957424fc3a82aea19e64bd14f8b1e96c5d30e35ba",
+      "target_complexes": 801,
+      "weights_tsv": null,
+      "weights_tsv_sha256": "e3d1f0e2b531d479bb1b0fffe2e420e816f255d6ed15a490b93a5a8ea9fc86de"
+    },
+    "25": {
+      "actual_complexes": 200,
+      "actual_fraction": 0.24968789013732834,
+      "cache_dir": null,
+      "cache_files": {
+        "heterographs.pkl": {
+          "bytes": 32332548,
+          "sha256": "c3254bfe5e43a6c6c1467e40475bdfc2810a3ae7886de918b204213c710bc100"
+        },
+        "rdkit_ligands.pkl": {
+          "bytes": 165414,
+          "sha256": "559a247800491aca6209e1301adebfb68f09b71b3a7521f1bab8771646f02857"
+        }
+      },
+      "component_groups": 73,
+      "manifest_csv": null,
+      "manifest_csv_sha256": "b00755d17a5dc63cd1f6156499b88958c1f7eaec59d84b5f4c983b5dcb0ab37e",
+      "nominal_fraction": 0.25,
+      "split_txt": null,
+      "split_txt_sha256": "bfc43acf8e44b187f7eefb320a1bd0d6bbd361bb585ae99d9aa440f3eaf340f3",
+      "target_complexes": 200,
+      "weights_tsv": null,
+      "weights_tsv_sha256": "95ed86c39a2da14608d3e741acc0beeb9888ae44d3eb5b61eb15b81bd3b881d9"
+    },
+    "50": {
+      "actual_complexes": 400,
+      "actual_fraction": 0.4993757802746567,
+      "cache_dir": null,
+      "cache_files": {
+        "heterographs.pkl": {
+          "bytes": 63272077,
+          "sha256": "896b5c4255102bf0b924bcc794a68a5440682a2bfb99181db64ef8a169696e01"
+        },
+        "rdkit_ligands.pkl": {
+          "bytes": 326306,
+          "sha256": "ee2fdcdc1761c2129973832a7c36d1442ac7ab0b9790170714e271be3f73b9a9"
+        }
+      },
+      "component_groups": 144,
+      "manifest_csv": null,
+      "manifest_csv_sha256": "a57c3fce2ef32ef9a89d7395f6d6b122c2d3a50ed78761d3736e05ef9e4fdb8f",
+      "nominal_fraction": 0.5,
+      "split_txt": null,
+      "split_txt_sha256": "51c8b3d17ddc666da236d3ee79c81504696cb9d5e2da9c159d34c4d7d5435c2b",
+      "target_complexes": 400,
+      "weights_tsv": null,
+      "weights_tsv_sha256": "7d6083f0ad16a8d7b17c96893920c6d7d8acd8ffea2b6916e599f2e47832e514"
+    }
+  },
+  "validation_cache": {
+    "experiment_symlink": null,
+    "read_only_reuse": true,
+    "target": null
+  }
+}

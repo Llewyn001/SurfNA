@@ -1,0 +1,14 @@
+{
+  "instances": 1018,
+  "unique_pdb_entries": 699,
+  "split_counts": {
+    "train": 801,
+    "val": 89,
+    "test": 128
+  },
+  "unique_pdb_by_split": {
+    "train": 499,
+    "val": 72,
+    "test": 128
+  }
+}

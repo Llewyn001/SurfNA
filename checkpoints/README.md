@@ -1,23 +1,5 @@
-# Checkpoints
+# Model assets
 
-The default SurfNA inference weights are included here. You can replace them or
-pass absolute paths through the run scripts.
+Run `python scripts/download_checkpoints.py --set default` from the repository root. Optional benchmark repeats are downloaded with `--set benchmark-repeats`. The downloader uses versioned GitHub Release URLs and verifies the archive and per-file SHA-256 hashes.
 
-Expected generator directory:
-
-```text
-generator/
-  model_parameters.yml
-  best_inference_epoch_model.pt
-```
-
-Expected MDN scorer directory:
-
-```text
-mdn_scorer/
-  model_parameters.yml
-  best_model.pt
-```
-
-The released inference command uses the generator to sample poses and the MDN
-scorer to rank them. The current paper default is 40 poses per complex.
+Weights are not stored in Git. Consult `docs/CHECKPOINTS.md` and `checkpoints/assets.json` for exact model identities and download sizes.

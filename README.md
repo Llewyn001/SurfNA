@@ -1,146 +1,95 @@
-# SurfNA Inference Release
+# SurfNA v2
 
-SurfNA is a surface-aware docking method for nucleic-acid ligand recognition.
-This repository is the lightweight release layout for:
+SurfNA predicts nucleic-acid–ligand binding poses by transferring molecular-surface interaction features learned from protein–ligand docking. The V2 pipeline combines a diffusion **Generator**, frozen **MDN interaction features**, and a **Scorer** that ranks the generated poses.
 
-1. receptor surface generation;
-2. pose generation and MDN reranking;
-3. single-target virtual screening.
+![SurfNA overview](docs/overview.png)
 
-Training scripts, raw benchmark outputs, and cluster-specific experiment logs are
-not part of this release directory.
+This repository contains code, configurations, PDB identifiers and sample selections. **Download structures from the PDB and model weights from [Releases](https://github.com/Llewyn001/SurfNA/releases/tag/v2.0.0-rc1).** Prepared datasets, training feature arrays, generated pose banks and intermediate training checkpoints are not included in the lightweight release.
 
-## Repository Layout
+## Installation
+
+```bash
+git clone --depth 1 https://github.com/Llewyn001/SurfNA.git
+cd SurfNA
+```
+
+Follow [the Linux/CUDA installation instructions](docs/INSTALL.md). The molecular graph models require CUDA. Run commands below from the repository root.
+
+## Model weights
+
+```bash
+python scripts/download_checkpoints.py --set default
+python scripts/precompute_diffusion_tables.py
+```
+
+The default checkpoint set contains the seed-0 EMA350 Generator, frozen native MDN and final Scorer (W0), including the required reference and normalization files. Diffusion lookup tables are generated locally once; they are deterministic numerical grids rather than training data and are not bundled with the weights. Their first computation can take time and requires several GB of free RAM.
+
+For the two additional Generator repetitions in the main benchmark:
+
+```bash
+python scripts/download_checkpoints.py --set benchmark-repeats
+```
+
+See [the checkpoint guide](docs/CHECKPOINTS.md) for file sizes, hashes and experiment mapping. Intermediate epoch checkpoints remain outside this lightweight release.
+
+## Obtain the structures
+
+The dataset comprises **801 training, 89 validation and 128 test ligand instances from 699 PDB entries**. An entry may contribute more than one ligand instance. The public lists preserve the original split and identify the target ligand and receptor context.
+
+```bash
+python scripts/download_pdb.py --split test --ccd --output data/raw
+# Use --split all to retrieve the training, validation and test entries.
+```
+
+[Data preparation](docs/DATA.md) describes chain/residue selection, CCD chemistry, surface features and duplicate control. PDB coordinates are downloaded directly from the original provider; this repository does not redistribute a prepared dataset.
+
+## Generate and rank poses
+
+Prepare each receptor, ligand and surface following the data guide. The named input convention is:
 
 ```text
-surface/                 Surface generation and schema checks
-src/                     Model, dataset, sampling, inference, and scoring code
-src/score_in_place_dataset/
-                         Inference-only virtual screening dataset
-scripts/                 Release entry points
-examples/                Minimal CSV examples
-checkpoints/             Place generator and MDN scorer checkpoints here
-tools/                   Optional APBS/MSMS/PDB2PQR binaries
+data/prepared/<name>/<name>_protein_processed.pdb
+data/prepared/<name>/<name>_ligand.sdf
+data/surfaces/<name>/<name>_protein_8A.ply
 ```
 
-## Environment
+Build the graph cache:
 
 ```bash
-conda env create -f environment.yml
-conda activate surfna-infer
-export PYTHONPATH=$PWD/src
+python scripts/prepare_graphs.py \
+  --data data/prepared --surfaces data/surfaces \
+  --names datasets/test_complexes.txt --output data/graphs
 ```
 
-The exact CUDA/PyTorch versions may need adjustment for your cluster. The
-research runs used CUDA-enabled PyTorch, PyG, RDKit, MDAnalysis, APBS, MSMS, and
-PDB2PQR.
-
-The SO(3)/torus diffusion lookup tables are not stored in Git. They are
-generated automatically the first time `utils.so3` and `utils.torus` are
-imported, matching the original DiffDock/SurfDock behavior. To generate them
-explicitly before a run:
+The command writes the generated cache location to `data/graphs/preparation.json`. Pass that directory, which contains `heterographs.pkl` and `rdkit_ligands.pkl`, to generation:
 
 ```bash
-PYTHONPATH=$PWD/src python scripts/precompute_diffusion_tables.py
+python scripts/generate.py \
+  --cache /path/reported/in/preparation.json \
+  --receptor-root data/prepared --names examples/one_complex.txt \
+  --output runs/generated --samples 40 --batch-size 10 --device cuda
+python scripts/rank_poses.py \
+  --manifest runs/generated/1am0/manifest.json \
+  --output runs/ranked --device cuda
 ```
 
-## 1. Generate Surfaces
+The Generator performs 20 reverse-diffusion iterations. The Scorer ranks the **complete ensemble of 40 poses**; the frozen MDN is one feature source, rather than the final ranking function. Generated SDFs retain the receptor coordinate frame.
 
-Input complexes are expected as:
+The reported benchmark is known-site holo redocking: native ligand coordinates define receptor context and surface cropping. It does not evaluate binding-site discovery.
 
-```text
-data/raw/na/<complex>/<complex>_protein.pdb
-data/raw/na/<complex>/<complex>_ligand.sdf
-```
+## Methods and paper results
 
-Run:
+- [Model description](docs/MODEL_CARD.md): Generator, native MDN and Scorer.
+- [Data and preprocessing](docs/DATA.md): PDB selections, chemistry, surface construction and splits.
+- [Reproduction map](docs/REPRODUCIBILITY.md): Figures 2–4 protocols and numeric source tables.
+- [Training material](docs/TRAINING.md): transfer initialization, native MDN adaptation and Scorer objective.
 
-```bash
-DATA_DIR=/path/to/data/raw/na \
-OUT_DIR=/path/to/data/surfaces/na_4feat_8A \
-TARGET_KIND=na \
-NUM_WORKERS=8 \
-bash scripts/run_surface_generation.sh
-```
+The released inference weights are the recorded paper models. The new download scripts and the full PDB-to-prediction workflow were not executed during this publication pass. Historical training/analysis implementations retain some original path assumptions; this release does not claim fully automated retraining of every experiment.
 
-Each output PLY uses the fixed SurfNA schema:
+The earlier MDN-ranking implementation remains in [the V1 commit](https://github.com/Llewyn001/SurfNA/tree/5c2def14440253b1282f94ede3667455e4c81943).
 
-```text
-x, y, z, nx, ny, nz, hbond, hphob, charge, si
-```
+## License and attribution
 
-The surface route follows the current paper code: ligand-proximal pocket
-selection, MSMS with `-one_cavity`, mesh regularization at `mesh_res=1.0`, APBS
-electrostatics with Amber/PDB2PQR, and an 8 A surface-vertex crop around the
-ligand.
+The project-specific code and checkpoint license has not yet been specified; see [LICENSE_PENDING.md](LICENSE_PENDING.md). Existing third-party notices remain applicable.
 
-## 2. Build an Inference CSV
-
-For a folder of complexes:
-
-```bash
-python scripts/prepare_inference_csv.py \
-  --data_dir /path/to/data/raw/na \
-  --surface_dir /path/to/data/surfaces/na_4feat_8A \
-  --out_csv runs/example/input.csv
-```
-
-For virtual screening against one target:
-
-```bash
-python scripts/prepare_inference_csv.py \
-  --protein_path /path/to/receptor.pdb \
-  --pocket_path /path/to/surface_dir/target_pocket.pdb \
-  --surface_ply /path/to/surface_dir/target.ply \
-  --ligand_library /path/to/library.sdf \
-  --ref_ligand /path/to/reference_ligand.sdf \
-  --out_csv runs/example/virtual_screen.csv
-```
-
-Required CSV columns are:
-
-```text
-protein_path,pocket_path,ref_ligand,ligand_path,protein_surface
-```
-
-## 3. Run Docking Inference
-
-```bash
-DATA_CSV=runs/example/input.csv \
-MODEL_DIR=checkpoints/generator \
-CONFIDENCE_MODEL_DIR=checkpoints/mdn_scorer \
-OUT_DIR=runs/example/inference \
-SAMPLES_PER_COMPLEX=40 \
-SAVE_TOP_N=40 \
-bash scripts/run_inference.sh
-```
-
-The default release behavior samples 40 poses per complex and ranks them with
-the MDN scorer. Output SDFs and confidence CSVs are written under `OUT_DIR`.
-
-## 4. Run Virtual Screening
-
-```bash
-PROTEIN_PATH=/path/to/receptor.pdb \
-POCKET_PATH=/path/to/target_pocket.pdb \
-SURFACE_PLY=/path/to/target.ply \
-LIGAND_LIBRARY=/path/to/library.sdf \
-MODEL_DIR=checkpoints/generator \
-CONFIDENCE_MODEL_DIR=checkpoints/mdn_scorer \
-OUT_DIR=runs/virtual_screen_target \
-bash scripts/run_virtual_screen.sh
-```
-
-Large libraries can be split into multiple CSV ranges with
-`--head_index/--tail_index` passed directly to `src/inference_accelerate.py`.
-
-## Notes for the Paper Version
-
-The fixed SurfNA method used in the current manuscript is:
-
-```text
-expanded high-confidence generator + official-like MDN scorer + 40 poses
-```
-
-This release keeps only the components needed to reproduce inference and
-screening once trained checkpoints are supplied.
+See [CITATION.md](CITATION.md) for the manuscript and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for inherited SurfDock/DiffDock code and separately installed software. PDB and PDBbind resources remain subject to their providers' terms.
