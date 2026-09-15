@@ -1,0 +1,278 @@
+{
+  "domain_feature_summary": {
+    "na": {
+      "acceptor": {
+        "mean": 0.4711359926744773,
+        "median": 0.4517334997653961,
+        "q01": 0.0,
+        "q25": 0.0,
+        "q75": 1.0,
+        "q99": 1.0,
+        "std": 0.45220336793802224,
+        "vertices": 426842
+      },
+      "apolar": {
+        "mean": 0.40569468700489664,
+        "median": 0.084501001983881,
+        "q01": 0.0,
+        "q25": 0.0,
+        "q75": 1.0,
+        "q99": 1.0,
+        "std": 0.4517430758552598,
+        "vertices": 426842
+      },
+      "boundary": {
+        "mean": 0.23679487960416268,
+        "median": 0.0,
+        "q01": 0.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "q99": 1.0,
+        "std": 0.42511535445971926,
+        "vertices": 426842
+      },
+      "charge": {
+        "mean": -17.723893347558157,
+        "median": -17.68135166168213,
+        "q01": -66.9354719543457,
+        "q25": -29.70244312286377,
+        "q75": -4.8939080238342285,
+        "q99": 32.672291450500396,
+        "std": 20.01277870935561,
+        "vertices": 426842
+      },
+      "donor": {
+        "mean": 0.1273665755248371,
+        "median": 0.0,
+        "q01": 0.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "q99": 1.0,
+        "std": 0.30981348814708587,
+        "vertices": 426842
+      },
+      "hbond": {
+        "mean": -0.343769417437643,
+        "median": -0.15947600454092026,
+        "q01": -1.0,
+        "q25": -1.0,
+        "q75": 0.0,
+        "q99": 1.0,
+        "std": 0.581163784030944,
+        "vertices": 426842
+      },
+      "hphob": {
+        "mean": -0.18861062695030975,
+        "median": -0.8309985101222992,
+        "q01": -1.0,
+        "q25": -1.0,
+        "q75": 1.0,
+        "q99": 1.0,
+        "std": 0.903486151509715,
+        "vertices": 426842
+      },
+      "si": {
+        "mean": 0.09234976110885852,
+        "median": 0.12647899985313416,
+        "q01": -0.9998850226402283,
+        "q25": -0.3166857585310936,
+        "q75": 0.5097279846668243,
+        "q99": 0.9999099969863892,
+        "std": 0.5444388224993376,
+        "vertices": 426842
+      }
+    },
+    "protein": {
+      "acceptor": {
+        "mean": 0.2684534490856858,
+        "median": 0.0,
+        "q01": 0.0,
+        "q25": 0.0,
+        "q75": 0.5629090070724487,
+        "q99": 1.0,
+        "std": 0.4076351268198524,
+        "vertices": 2532119
+      },
+      "apolar": {
+        "mean": 0.6180672278905358,
+        "median": 1.0,
+        "q01": 0.0,
+        "q25": 0.0,
+        "q75": 1.0,
+        "q99": 1.0,
+        "std": 0.44637998359815156,
+        "vertices": 2532119
+      },
+      "boundary": {
+        "mean": 0.20830616570548224,
+        "median": 0.0,
+        "q01": 0.0,
+        "q25": 0.0,
+        "q75": 0.0,
+        "q99": 1.0,
+        "std": 0.40609691827759825,
+        "vertices": 2532119
+      },
+      "charge": {
+        "mean": -2.495721031906988,
+        "median": -1.265949010848999,
+        "q01": -62.60836311340332,
+        "q25": -13.28128719329834,
+        "q75": 8.150355815887451,
+        "q99": 60.79544906616211,
+        "std": 21.7201931667191,
+        "vertices": 2532119
+      },
+      "donor": {
+        "mean": 0.1854371975019784,
+        "median": 0.0,
+        "q01": 0.0,
+        "q25": 0.0,
+        "q75": 0.048548499122262,
+        "q99": 1.0,
+        "std": 0.3591466416084034,
+        "vertices": 2532119
+      },
+      "hbond": {
+        "mean": -0.08301625152753664,
+        "median": 0.0,
+        "q01": -1.0,
+        "q25": -0.14160049706697464,
+        "q75": 0.0,
+        "q99": 1.0,
+        "std": 0.5287278357684595,
+        "vertices": 2532119
+      },
+      "hphob": {
+        "mean": 0.23613445557929544,
+        "median": 1.0,
+        "q01": -1.0,
+        "q25": -1.0,
+        "q75": 1.0,
+        "q99": 1.0,
+        "std": 0.8927599672272686,
+        "vertices": 2532119
+      },
+      "si": {
+        "mean": -0.08602644691782954,
+        "median": -0.08851700276136398,
+        "q01": -0.9999039769172668,
+        "q25": -0.576524019241333,
+        "q75": 0.31827250123023987,
+        "q99": 0.9998999834060669,
+        "std": 0.5778522711282704,
+        "vertices": 2532119
+      }
+    }
+  },
+  "fit_policy": {
+    "domain_balance": "equal vertex budget per domain before fitting charge",
+    "fit_split": "training_only",
+    "seed": 20260818,
+    "vertex_budget_per_domain": 200000,
+    "warning": "Do not refit on validation/test surfaces or fit separate protein/NA scalers."
+  },
+  "schema_version": "surface-v2-scaler-1",
+  "source": {
+    "na": {
+      "directory": null,
+      "ply_count": 984,
+      "training_manifest": null
+    },
+    "protein": {
+      "directory": null,
+      "ply_count": 4622,
+      "training_manifest": null
+    }
+  },
+  "transforms": {
+    "acceptor": {
+      "kind": "fixed_range_identity",
+      "output_range": [
+        0.0,
+        1.0
+      ],
+      "physical_range": [
+        0.0,
+        1.0
+      ]
+    },
+    "apolar": {
+      "kind": "fixed_range_identity",
+      "output_range": [
+        0.0,
+        1.0
+      ],
+      "physical_range": [
+        0.0,
+        1.0
+      ]
+    },
+    "boundary": {
+      "kind": "fixed_range_identity",
+      "output_range": [
+        0.0,
+        1.0
+      ],
+      "physical_range": [
+        0.0,
+        1.0
+      ]
+    },
+    "charge": {
+      "center": -8.86952543258667,
+      "clip_after_zscore": [
+        -5.0,
+        5.0
+      ],
+      "formula": "clip((charge_kBT_per_e - center) / scale, low, high)",
+      "input_units": "kBT/e",
+      "kind": "domain_balanced_robust_zscore",
+      "scale": 19.430035060501098
+    },
+    "donor": {
+      "kind": "fixed_range_identity",
+      "output_range": [
+        0.0,
+        1.0
+      ],
+      "physical_range": [
+        0.0,
+        1.0
+      ]
+    },
+    "hbond": {
+      "kind": "fixed_range_identity",
+      "output_range": [
+        -1.0,
+        1.0
+      ],
+      "physical_range": [
+        -1.0,
+        1.0
+      ]
+    },
+    "hphob": {
+      "kind": "fixed_range_identity",
+      "output_range": [
+        -1.0,
+        1.0
+      ],
+      "physical_range": [
+        -1.0,
+        1.0
+      ]
+    },
+    "si": {
+      "kind": "fixed_range_identity",
+      "output_range": [
+        -1.0,
+        1.0
+      ],
+      "physical_range": [
+        -1.0,
+        1.0
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "surfna"
+version = "2.0.0rc1"
+description = "Surface-based nucleic-acid ligand docking with transferable physicochemical representations"
+requires-python = ">=3.10"
+dependencies = ["numpy", "torch", "PyYAML"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

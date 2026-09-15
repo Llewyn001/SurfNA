@@ -1,0 +1,28 @@
+{
+  "python": "3.10.16",
+  "packages": {
+    "torch": "2.1.2+cu121",
+    "torch-geometric": "2.5.0",
+    "torch-scatter": "2.1.2+pt21cu121",
+    "torch-sparse": "0.6.18+pt21cu121",
+    "torch-cluster": "1.6.3+pt21cu121",
+    "e3nn": "0.5.1",
+    "numpy": "1.26.3",
+    "scipy": "1.15.3",
+    "rdkit": "2023.3.1",
+    "MDAnalysis": "2.4.0",
+    "plyfile": "1.0.1",
+    "accelerate": "0.15.0",
+    "PyYAML": "6.0.2",
+    "spyrmsd": "0.8.0",
+    "biopandas": "0.4.1",
+    "loguru": "0.7.2",
+    "prefetch-generator": "1.0.3",
+    "wandb": "0.16.1",
+    "joblib": "1.4.2",
+    "networkx": "3.2",
+    "biopython": "1.79",
+    "torch-ema": "0.3"
+  },
+  "missing": []
+}

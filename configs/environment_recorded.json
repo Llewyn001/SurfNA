@@ -1,0 +1,22 @@
+{
+  "packages": {
+    "MDAnalysis": "2.4.0",
+    "accelerate": "0.15.0",
+    "e3nn": "0.5.1",
+    "numpy": "1.24.4",
+    "plyfile": "1.0.1",
+    "rdkit": "2023.3.1",
+    "scipy": "1.8.1",
+    "torch": "2.2.2",
+    "torch-geometric": "2.5.0",
+    "torch-scatter": "2.1.2+pt22cu121",
+    "torch-sparse": "0.6.18+pt22cu121"
+  },
+  "preparation_threads": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "python": "3.10.16"
+}

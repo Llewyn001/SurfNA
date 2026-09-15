@@ -834,9 +834,7 @@ def compute_apbs(vertices: np.ndarray, apbs_pdb: Path, tmp_dir: Path, cfg: Surfa
         apbs_input = None
 
     if apbs_input is None:
-        conda_pdb2pqr = shutil.which("pdb2pqr")
-        if conda_pdb2pqr is None:
-            raise FileNotFoundError("Required pdb2pqr fallback missing from PATH")
+        conda_pdb2pqr = shutil.which("pdb2pqr") or "/public/home/luoyuxuan/.conda/envs/SurfDock/bin/pdb2pqr"
         conda_pdb2pqr = Path(conda_pdb2pqr)
         if not conda_pdb2pqr.exists():
             raise FileNotFoundError(f"Required pdb2pqr fallback missing: {conda_pdb2pqr}")

@@ -1,2 +1,0 @@
-protein_path,pocket_path,ref_ligand,ligand_path,protein_surface
-/abs/path/100d/100d_protein.pdb,/abs/path/surfaces/100d/100d_protein_8A.pdb,/abs/path/100d/100d_ligand.sdf,/abs/path/100d/100d_ligand.sdf,/abs/path/surfaces/100d/100d_protein_8A.ply
