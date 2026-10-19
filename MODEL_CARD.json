@@ -1,0 +1,44 @@
+{
+  "release": "v2-minimal-20261019",
+  "repository": "https://github.com/Llewyn001/SurfNA",
+  "scope": "known-site pose generation and complete K40 candidate-set ranking; inference only",
+  "weights": [
+    {
+      "path": "checkpoints/generator_seed0/model.pt",
+      "sha256": "f15d3e88ade75ceef0bf4212b2f09b628c7e8f8e2bb3abe3e260bed35cefedf1",
+      "bytes": 76385090,
+      "source_checkpoint_sha256": "f15d3e88ade75ceef0bf4212b2f09b628c7e8f8e2bb3abe3e260bed35cefedf1",
+      "tensor_state_sha256": "ae6ec6a4a47333c4bf31022adc81e2f5b84666dd278176ddd4342a9d7d388d03",
+      "packaging": "original tensor state"
+    },
+    {
+      "path": "checkpoints/scorer/model.pt",
+      "sha256": "101133f99c29828711d5b18b9784c983e975835315a36298990d91b2445d5f3f",
+      "bytes": 261761,
+      "source_checkpoint_sha256": "3b44482c1851ab3a5d2b9224aebb1d4a7d02efb75e169d99ac348b724555631f",
+      "tensor_state_sha256": "0bb279565cc42325327c376779ddfd60d460708990bc0f4ba7daa438974194c6",
+      "packaging": "tensor state only; original training metadata omitted"
+    },
+    {
+      "path": "checkpoints/mdn/native_prior_static_bundle.pt",
+      "sha256": "8971ea50d6e7199d865dc77752894617093322aa5ef04a8b16a911233ef3c871",
+      "bytes": 38006405,
+      "source_checkpoint_sha256": "a01385ac6bdadfa5376361c97be786040ee49e6036dc65e9a938e399e518febc",
+      "tensor_state_sha256": "dae3d92aff909934b3364fe2715799da1878019de71d69bb7bec8823358ece2a",
+      "packaging": "tensor state only; original training metadata omitted"
+    }
+  ],
+  "generator_selection": "validation-inference-best EMA checkpoint of the fixed 500-epoch run; not selected on test data",
+  "scorer_selection": "validation-frozen repaired W0 ranking head; normalization buffers embedded in model",
+  "feature_schema": {
+    "mdn_nearest8": 32,
+    "generator_interaction": 576,
+    "geometry": 103,
+    "total": 711
+  },
+  "generator_steps": 20,
+  "candidate_count": 40,
+  "score": "success_logit - 0.25 * predicted_log_rmsd",
+  "data_included": false,
+  "raw_inputs_or_training_identifiers_included": false
+}

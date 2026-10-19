@@ -13,6 +13,7 @@ from utils import so3, torus
 from datasets.process_mols import lig_feature_dims, rec_residue_feature_dims
 from loguru import logger
 from models.surfna_v2_modules import LigandAnchoredPatchTokenizer, NuSurfAnchorFusion
+from models.nucleic_batch_indices import normalize_nucleic_anchor_parent_indices
 try:
     from models.adapter_layers import ScalarGatedAdapter, LinearAdapter
 except ImportError:
@@ -825,6 +826,8 @@ class TensorProductScoreModel(torch.nn.Module):
             self.last_task_aux_metrics['frame_valid_fraction'] = torch.stack(frame_values).mean().detach()
 
     def forward(self, data):
+        if self.nusurf_fusion is not None:
+            normalize_nucleic_anchor_parent_indices(data)
         #logger.info(f'forward data: {data.name}')
         self.last_task_aux_loss = None
         self.last_task_aux_metrics = {}

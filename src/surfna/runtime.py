@@ -12,9 +12,9 @@ def activate(kind):
    file=getattr(module,'__file__',None)
    if file and not Path(file).resolve().is_relative_to(source):
     raise RuntimeError('Run Generator and MDN feature extraction in separate processes to avoid import conflicts.')
- table_root=ROOT/'reproducibility/diffusion_tables'
- table_root.mkdir(parents=True,exist_ok=True)
- os.environ['precomputed_arrays']=str(table_root)
+ cache=Path(os.environ.get('SURFNA_CACHE_DIR',str(ROOT/'.cache/diffusion'))).expanduser()
+ cache.mkdir(parents=True,exist_ok=True)
+ os.environ['precomputed_arrays']=str(cache)
  os.environ.pop('SURFNA_V2_G22_SOURCE_ROOT',None)
  sys.path.insert(0,str(source))
  return source
@@ -48,7 +48,7 @@ def load_mdn(device='cpu'):
  cfg.mdn_reference_json=str(ROOT/'checkpoints/mdn/native_train_reference.json')
  torch.manual_seed(20260828)
  model=build_surfna_v2_scorer(cfg,torch.device(device),partial(t_to_sigma,args=cfg))
- bundle=torch.load(ROOT/'checkpoints/mdn/native_prior_static_bundle.pt',map_location='cpu',weights_only=False)
+ bundle=torch.load(ROOT/'checkpoints/mdn/native_prior_static_bundle.pt',map_location='cpu',weights_only=True)
  state=bundle['model']
  expected={k for k in model.state_dict() if k.startswith('prior_head.') or (k.startswith('backbone.') and any(k[9:]==p or k[9:].startswith(p+'.') for p in STATIC_PREFIXES))}
  if set(state)!=expected:raise RuntimeError('The MDN static bundle does not cover the exact static feature path')
