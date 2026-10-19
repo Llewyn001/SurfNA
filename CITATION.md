@@ -1,8 +1,8 @@
 # Citation information
 
-Manuscript title: **Transferable ligand-facing surface priors enable data-efficient nucleic-acid–ligand docking**.
+Manuscript title: **Transferring protein docking knowledge to nucleic acids through molecular surfaces**.
 
-Software: **SurfNA v2**, release candidate **2.0.0-rc1**, assembled 15 September 2026.
+Software: **SurfNA V2 minimal inference distribution**, prepared 19 October 2026.
 
 Repository: [Llewyn001/SurfNA](https://github.com/Llewyn001/SurfNA).
 

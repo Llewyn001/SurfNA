@@ -1,13 +1,25 @@
-# SurfNA v2
+# SurfNA 最小推理版本
 
-本仓库提供 Generator、冻结 MDN 特征提取与最终 W0 Scorer 的代码、配置和数据清单。模型权重通过 GitHub Releases 单独下载。
+SurfNA 通过共享分子表面将蛋白质–配体相互作用知识迁移到核酸–小分子对接。
+本版提供当前论文对应的 Generator、Scorer 及必要 MDN 特征模型，面向指定结合位点，
+生成 40 个候选构象并排序。训练数据、测试集、结构文件和历史实验输出不在本次发布范围内。
 
-- [安装与推理](README.md)
-- [PDB 实例清单](datasets/nucleic_acid_instances.csv)：801 个训练、89 个验证、128 个测试实例，共 699 个 PDB 条目。
-- [数据处理说明](docs/DATA.md)：配体、受体链/残基、CCD 化学修正、表面计算、去重与划分。
-- [Checkpoint 说明](docs/CHECKPOINTS.md)：默认模型及主实验另外两个训练重复。
-- [论文复现说明](docs/REPRODUCIBILITY.md)：实验协议与 Figure 2–4 数值源数据。
+完整安装、输入要求、表面生成及命令见 [英文 README](README.md)。
+本机和服务器工作区已放置相应权重；下载包的校验值见 `MODEL_CARD.json`。
 
-读者自行从 PDB 下载结构并生成表面、图缓存。训练特征、候选构象库、处理后的完整数据集和所有中间 epoch 权重均不随本次轻量版本发布。保留了原始样本顺序、嵌套子集和相应方法代码。
+```bash
+conda env create -f environment.yml
+conda activate surfna-v2
+python scripts/install_weights.py --archive /path/to/surfna-v2-minimal-weights.tar.gz
+python scripts/precompute.py
+python scripts/check_models.py
+python scripts/dock.py --receptor query_pocket.pdb --ligand query_ligand.sdf \
+  --surface query.ply --output outputs/query --device cuda
+```
 
-本次发布整理没有新增模型运行、benchmark 或训练检查。历史脚本的路径约定和当前公开资产范围见复现说明。
+推理环境验证于 Linux/CUDA；将仓库放在 Windows 上不等于已经验证 Windows 原生推理。
+已有兼容表面时可直接使用；否则需要单独安装 APBS、PDB2PQR、MSMS 和 PyMesh。
+当前模型使用 full8 表面，不能与早期四通道表面或 EMA350 版本的权重混用。
+
+完整 40 候选流程及压缩包重新安装检查已通过，详见 `VALIDATION.md`。
+项目自身代码及权重的许可证保留仓库现有待定状态；上游许可见 `licenses/`。

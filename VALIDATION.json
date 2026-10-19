@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "date": "2026-10-19",
+  "platform": "Linux x86_64, NVIDIA H20, Python 3.10.16, PyTorch 2.1.2+cu121, PyG 2.5.0",
+  "checkpoint_tensor_equality": [
+    {
+      "path": "checkpoints/generator_seed0/model.pt",
+      "tensors": 463,
+      "tensor_state_sha256": "ae6ec6a4a47333c4bf31022adc81e2f5b84666dd278176ddd4342a9d7d388d03",
+      "identical_to_selected_source": true
+    },
+    {
+      "path": "checkpoints/scorer/model.pt",
+      "tensors": 15,
+      "tensor_state_sha256": "0bb279565cc42325327c376779ddfd60d460708990bc0f4ba7daa438974194c6",
+      "identical_to_selected_source": true
+    },
+    {
+      "path": "checkpoints/mdn/native_prior_static_bundle.pt",
+      "tensors": 205,
+      "tensor_state_sha256": "dae3d92aff909934b3364fe2715799da1878019de71d69bb7bec8823358ece2a",
+      "identical_to_selected_source": true
+    }
+  ],
+  "tests": {
+    "isolated_generator_load": true,
+    "isolated_mdn_static_load": true,
+    "strict_scorer_load": true,
+    "synthetic_scorer_permutation_invariance": true,
+    "prepared_user_input_interface": true,
+    "generated_candidates": 40,
+    "diffusion_steps": 20,
+    "ranked_sdf_candidates": 40,
+    "feature_shape": [
+      40,
+      27,
+      711
+    ],
+    "finite_coordinates_and_features": true,
+    "descending_score_order": true
+  },
+  "private_inputs_in_release": false,
+  "fresh_environment_install_tested": false,
+  "external_surface_tool_installation_tested": false,
+  "scope": "single-complex integration smoke test; does not establish full benchmark reproduction",
+  "archive_roundtrip": {
+    "status": "PASS",
+    "fresh_source_extraction": true,
+    "fresh_weights_installation": true,
+    "all_models_load_on_cpu": true,
+    "rank_order_identical": true,
+    "maximum_score_error_cpu_vs_gpu": 7.152557373046875e-07,
+    "commands": [
+      {
+        "command": "scripts/install_weights.py",
+        "exitcode": 0
+      },
+      {
+        "command": "scripts/verify_weights.py",
+        "exitcode": 0
+      },
+      {
+        "command": "scripts/check_models.py",
+        "exitcode": 0
+      },
+      {
+        "command": "scripts/rank.py",
+        "exitcode": 0
+      }
+    ]
+  }
+}

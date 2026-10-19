@@ -8,9 +8,9 @@ def main():
  p.add_argument('--cache',type=Path,required=True,help='Directory with heterographs.pkl and rdkit_ligands.pkl')
  p.add_argument('--output',type=Path,required=True);p.add_argument('--checkpoint',type=Path)
  p.add_argument('--config',type=Path);p.add_argument('--names',type=Path,help='Optional ordered complex names, one per line')
- p.add_argument('--samples',type=int,default=40,choices=[10,40]);p.add_argument('--batch-size',type=int,default=10)
- p.add_argument('--seed',type=int,default=20260826);p.add_argument('--protocol',choices=['benchmark','figure3'],default='benchmark')
- p.add_argument('--device',choices=['cuda'],default='cuda');p.add_argument('--receptor-root',type=Path)
+ p.add_argument('--samples',type=int,default=40,choices=[10,40]);p.add_argument('--batch-size',type=int,default=5)
+ p.add_argument('--seed',type=int,default=20260903);p.add_argument('--protocol',choices=['benchmark','figure3'],default='benchmark')
+ p.add_argument('--device',choices=['cpu','cuda'],default='cuda');p.add_argument('--receptor-root',type=Path,required=True)
  a=p.parse_args()
  if a.protocol=='figure3' and (a.samples!=10 or a.batch_size!=5):raise ValueError('Figure 3 uses K10 and inference batch 5')
  if a.output.exists():raise ValueError('Use a new output directory')
@@ -76,7 +76,7 @@ def main():
    mol.RemoveAllConformers();mol.AddConformer(conformer);dest=folder/f'pose_{ordinal:02d}.sdf'
    with Chem.SDWriter(str(dest)) as f:f.write(mol)
    paths.append(dest.name);rows.append([name,ordinal,str(dest.relative_to(a.output))])
-  receptor_root=a.receptor_root or ROOT/'reproducibility/test128/input'
+  receptor_root=a.receptor_root
   receptor=receptor_root/name/f'{name}_protein_processed.pdb'
   manifest={'graph':'graph.pt','reference_ligand':'reference.sdf','receptor':str(receptor.resolve()),'poses':paths}
   (folder/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')

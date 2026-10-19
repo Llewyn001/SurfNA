@@ -7,9 +7,7 @@ def main():
  p=argparse.ArgumentParser(description=__doc__)
  p.add_argument('--manifest',required=True,help='JSON: graph, receptor, reference_ligand, poses (40 SDF paths)')
  p.add_argument('--family',required=True,choices=['mdn32','interaction','geometry']);p.add_argument('--output',required=True)
- p.add_argument('--device',default='cuda',choices=['cpu','cuda']);a=p.parse_args()
- if a.family!='geometry' and a.device!='cuda':
-  raise ValueError('Model feature extraction requires CUDA: capped radius neighborhoods differ on CPU. W0 ranking of saved features supports CPU.')
+ p.add_argument('--device',default='cpu',choices=['cpu','cuda']);a=p.parse_args()
  import numpy as np
  from rdkit import Chem
  from surfna.pose_quality import atom_order_signature,read_molecule

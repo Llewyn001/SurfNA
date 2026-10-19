@@ -18,7 +18,7 @@ def evidence(model, graph, surface, surface_pos, log_probability, device):
     import torch
     from torch_geometric.data import Batch
     batch = Batch.from_data_list([graph]).to(device)
-    # Encode each candidate in its own coordinates.
+    # Deliberately called once for EACH of the 7120 candidates, never native-cache reused.
     encoded = model.backbone.encode_ligand_intra(batch)
     ligand = encoded.scalar[0]
     if not bool(encoded.mask[0].all()) or len(ligand) != len(batch['ligand'].pos):
@@ -49,6 +49,6 @@ def clean_graph(graph):
                  "ordinal", "atoms_pos"}
     for store in graph.stores:
         for field in list(store.keys()):
-            if field in forbidden or field.startswith(("reference_", "native_", "label_", "chemistry_", "coordinate_frame")):
+            if field in forbidden or field.startswith(("reference_", "native_", "label_")):
                 del store[field]
     return graph
