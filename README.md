@@ -37,7 +37,7 @@ and other dependency versions have not been validated.
 
 ## Model weights
 
-The matching model asset is `surfna-v2-minimal-weights.tar.gz`. Install it from
+Download the [matching model asset](https://github.com/Llewyn001/SurfNA/releases/download/v2-minimal-20261019/surfna-v2-minimal-weights.tar.gz), `surfna-v2-minimal-weights.tar.gz`. Install it from
 a locally downloaded copy; the installer verifies every file against the pinned
 SHA-256 values in `MODEL_CARD.json` before installing anything.
 
@@ -46,9 +46,15 @@ python scripts/install_weights.py --archive /path/to/surfna-v2-minimal-weights.t
 python scripts/verify_weights.py
 ```
 
-An HTTPS release-asset URL can also be supplied with `--url`. Model download
-locations are listed on the repository's Releases page when the matching release
-is published. The prepared local and server workspaces already contain these weights.
+An HTTPS release-asset URL can also be supplied with `--url`:
+
+```bash
+python scripts/install_weights.py --url https://github.com/Llewyn001/SurfNA/releases/download/v2-minimal-20261019/surfna-v2-minimal-weights.tar.gz
+```
+
+See the [matching release](https://github.com/Llewyn001/SurfNA/releases/tag/v2-minimal-20261019)
+for the source archive, model archive and checksum list. The prepared local and
+server workspaces already contain these weights.
 
 | Component | Role | Size | SHA-256 prefix |
 |---|---|---:|---|
