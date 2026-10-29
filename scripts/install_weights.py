@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     group=p.add_mutually_exclusive_group(required=True)
-    group.add_argument('--archive',type=Path,help='Local surfna-v2-minimal-weights.tar.gz')
+    group.add_argument('--archive',type=Path,help='Local surfna-v2-weights.tar.gz')
     group.add_argument('--url',help='HTTPS URL of the matching model archive')
     a=p.parse_args()
     if a.url and not a.url.startswith('https://'):p.error('Use an HTTPS download URL')

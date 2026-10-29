@@ -1,5 +1,5 @@
 {
-  "release": "v2-minimal-20261019",
+  "release": "v2.0.0",
   "repository": "https://github.com/Llewyn001/SurfNA",
   "scope": "known-site pose generation and complete K40 candidate-set ranking; inference only",
   "weights": [
@@ -40,5 +40,7 @@
   "candidate_count": 40,
   "score": "success_logit - 0.25 * predicted_log_rmsd",
   "data_included": false,
-  "raw_inputs_or_training_identifiers_included": false
+  "raw_inputs_or_training_identifiers_included": false,
+  "license": "MIT",
+  "license_file": "LICENSE"
 }
