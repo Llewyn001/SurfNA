@@ -23,3 +23,11 @@ all three model files, verifying hashes, loading every model on CPU and rerankin
 the saved features passed. All 40 ranks matched the GPU run; maximum score
 difference was 7.15255737e-07. This reused the
 existing dependency environment, rather than installing a new Conda environment.
+
+## Packaging update 29 October 2026
+
+The v2.0.0 release adds MIT licensing and updates distribution names and
+documentation. Model tensor files and inference parameters are unchanged from
+the validated 19 October model set. All three file hashes were rechecked against
+`MODEL_CARD.json`; the release archive was checked member by member. The update
+does not claim a new training run or repeat of the GPU integration test.

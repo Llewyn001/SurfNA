@@ -2,7 +2,7 @@
 
 **Protein-to-nucleic-acid transfer through a shared molecular surface for ligand pose generation and ranking.**
 
-This is the minimal SurfNA V2 inference release corresponding to the current
+This is the SurfNA V2 inference release corresponding to the current
 manuscript. It generates 40 ligand poses with 20 diffusion steps and ranks the
 complete candidate pool with the frozen Scorer. It supports a **user-specified,
 known nucleic-acid binding site**. Training datasets, benchmark structures,
@@ -37,22 +37,22 @@ and other dependency versions have not been validated.
 
 ## Model weights
 
-Download the [matching model asset](https://github.com/Llewyn001/SurfNA/releases/download/v2-minimal-20261019/surfna-v2-minimal-weights.tar.gz), `surfna-v2-minimal-weights.tar.gz`. Install it from
+Download the [matching model asset](https://github.com/Llewyn001/SurfNA/releases/download/v2.0.0/surfna-v2-weights.tar.gz), `surfna-v2-weights.tar.gz`. Install it from
 a locally downloaded copy; the installer verifies every file against the pinned
 SHA-256 values in `MODEL_CARD.json` before installing anything.
 
 ```bash
-python scripts/install_weights.py --archive /path/to/surfna-v2-minimal-weights.tar.gz
+python scripts/install_weights.py --archive /path/to/surfna-v2-weights.tar.gz
 python scripts/verify_weights.py
 ```
 
 An HTTPS release-asset URL can also be supplied with `--url`:
 
 ```bash
-python scripts/install_weights.py --url https://github.com/Llewyn001/SurfNA/releases/download/v2-minimal-20261019/surfna-v2-minimal-weights.tar.gz
+python scripts/install_weights.py --url https://github.com/Llewyn001/SurfNA/releases/download/v2.0.0/surfna-v2-weights.tar.gz
 ```
 
-See the [matching release](https://github.com/Llewyn001/SurfNA/releases/tag/v2-minimal-20261019)
+See the [matching release](https://github.com/Llewyn001/SurfNA/releases/tag/v2.0.0)
 for the source archive, model archive and checksum list. The prepared local and
 server workspaces already contain these weights.
 
@@ -177,7 +177,7 @@ load trusted PyTorch/pickle graph files.
 
 ## Scope and validation
 
-This release is intended for minimal known-site inference. It does not provide
+This release is intended for known-site inference. It does not provide
 blind site discovery, receptor flexibility, full training, dataset download or
 automatic reproduction of all paper figures. Molecular preparation, ion/tautomer
 choices and the supplied binding-site context affect the prediction.
@@ -189,8 +189,9 @@ public package. Dataset publication is deferred independently of the code releas
 
 ## License and acknowledgements
 
-The project-specific code and checkpoint license follows the repository's existing
-pending status; see `LICENSE_PENDING.md`. Upstream notices are retained in `licenses/`.
+SurfNA-specific code and the released model checkpoints are distributed under the
+[MIT License](LICENSE). Third-party code retains its original licenses and notices
+in `licenses/`. This license does not apply to external structural datasets.
 See `THIRD_PARTY_NOTICES.md` for inherited SurfDock/DiffDock code and external
 dependencies. Please cite the SurfNA manuscript associated with this repository;
 final publication metadata will be added when available.

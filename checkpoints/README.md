@@ -1,9 +1,9 @@
 # Matching model files
 
-Install `surfna-v2-minimal-weights.tar.gz` with:
+Install `surfna-v2-weights.tar.gz` with:
 
 ```bash
-python scripts/install_weights.py --archive /path/to/surfna-v2-minimal-weights.tar.gz
+python scripts/install_weights.py --archive /path/to/surfna-v2-weights.tar.gz
 python scripts/verify_weights.py
 ```
 
@@ -15,4 +15,4 @@ distributed separately from Git source files. The small MDN reference JSON is a
 fitted model distribution, not a structural dataset.
 
 Earlier `v2.0.0-rc1` assets use a different Generator and Scorer. They are retained
-as historical releases and must not be mixed with this minimal distribution.
+as historical releases and must not be mixed with this model distribution.

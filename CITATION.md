@@ -2,7 +2,7 @@
 
 Manuscript title: **Transferring protein docking knowledge to nucleic acids through molecular surfaces**.
 
-Software: **SurfNA V2 minimal inference distribution**, prepared 19 October 2026.
+Software: **SurfNA V2 inference distribution**, updated 29 October 2026.
 
 Repository: [Llewyn001/SurfNA](https://github.com/Llewyn001/SurfNA).
 
